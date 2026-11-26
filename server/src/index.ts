@@ -4,6 +4,9 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 
+/* ROUTE IMPORTS */
+import dashboardRoutes from "./routes/dashboardRoutes.js";
+
 /* CONFIGURATION */
 const app = express();
 const port = Number(process.env.PORT) || 3001;
@@ -22,6 +25,9 @@ app.use(
 app.use(morgan("common"));
 
 app.use(cors());
+
+/* ROUTES */
+app.use("/dashboard", dashboardRoutes);
 
 /* START SERVER */
 app.listen(port, "0.0.0.0", () => {
