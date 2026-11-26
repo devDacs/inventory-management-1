@@ -40,7 +40,7 @@ const Navbar = () => {
           <input
             type="search"
             placeholder="Start type to search groups & products"
-            className="w-50 rounded-lg border-2 border-gray-300 bg-white py-2 pl-10 pr-4 focus:border-blue-500 focus:outline-none md:w-80"
+            className="w-50 rounded-lg border-2 border-gray-300 bg-white py-2 pl-10 pr-4 focus:border-blue-500 focus:outline-none md:w-60"
           />
 
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
