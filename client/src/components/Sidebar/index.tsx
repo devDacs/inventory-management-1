@@ -93,7 +93,7 @@ const Sidebar = () => {
       </div>
 
       {/* FOOTER */}
-      <div>
+      <div className={`mb-10 ${isSidebarCollapsed ? "hidden" : "block"}`}>
         <p className="text-center text-xs text-gray-500">
           &copy; 2026 DacStock
         </p>
