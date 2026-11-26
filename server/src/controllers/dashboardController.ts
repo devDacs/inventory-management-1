@@ -6,44 +6,46 @@ export const getDashboardMetrics = async (
   res: Response,
 ): Promise<void> => {
   try {
-    const popularProducts = await prisma.product.findMany({
-      take: 15,
-      orderBy: {
-        stockQuantity: "desc",
-      },
-    });
-
-    const salesSummaries = await prisma.salesSummary.findMany({
-      take: 5,
-      orderBy: {
-        date: "desc",
-      },
-    });
-
-    const purchaseSummaries = await prisma.purchaseSummary.findMany({
-      take: 5,
-      orderBy: {
-        date: "desc",
-      },
-    });
-
-    const expenseSummaries = await prisma.expenseSummary.findMany({
-      take: 5,
-      orderBy: {
-        date: "desc",
-      },
-    });
-
-    const expenseByCategorySummaryRaw = await prisma.expenseByCategory.findMany(
-      {
+    const [
+      popularProducts,
+      salesSummaries,
+      purchaseSummaries,
+      expenseSummaries,
+      expenseByCategorySummariesRaw,
+    ] = await Promise.all([
+      prisma.product.findMany({
+        take: 15,
+        orderBy: {
+          stockQuantity: "desc",
+        },
+      }),
+      prisma.salesSummary.findMany({
         take: 5,
         orderBy: {
           date: "desc",
         },
-      },
-    );
+      }),
+      prisma.purchaseSummary.findMany({
+        take: 5,
+        orderBy: {
+          date: "desc",
+        },
+      }),
+      prisma.expenseSummary.findMany({
+        take: 5,
+        orderBy: {
+          date: "desc",
+        },
+      }),
+      prisma.expenseByCategory.findMany({
+        take: 5,
+        orderBy: {
+          date: "desc",
+        },
+      }),
+    ]);
 
-    const expenseByCategorySummary = expenseByCategorySummaryRaw.map(
+    const expenseByCategorySummaries = expenseByCategorySummariesRaw.map(
       (item) => ({
         ...item,
         amount: item.amount.toString(),
@@ -57,7 +59,7 @@ export const getDashboardMetrics = async (
         salesSummaries,
         purchaseSummaries,
         expenseSummaries,
-        expenseByCategorySummary,
+        expenseByCategorySummaries,
       },
     });
   } catch (error: unknown) {
