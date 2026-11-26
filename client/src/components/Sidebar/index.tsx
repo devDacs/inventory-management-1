@@ -21,9 +21,17 @@ const Sidebar = () => {
       className={`fixed z-40 flex h-full flex-col overflow-hidden bg-white shadow-md transition-all duration-300 ${isSidebarCollapsed ? "w-0 md:w-16" : "w-72 md:w-64"}`}
     >
       {/* TOP LOGO */}
-      <div className="flex items-center justify-between gap-3 pt-8 md:justify-normal">
+      <div
+        className={`flex items-center justify-between gap-3 pt-8 md:justify-normal ${
+          isSidebarCollapsed ? "px-5" : "px-8"
+        }`}
+      >
         <div>logo</div>
-        <h1 className="text-2xl font-extrabold">DACSTOCK</h1>
+        <h1
+          className={`text-2xl font-extrabold ${isSidebarCollapsed ? "hidden" : "block"}`}
+        >
+          DACSTOCK
+        </h1>
 
         <button
           className="rounded-full bg-gray-100 px-3 py-3 hover:bg-blue-100 md:hidden"
